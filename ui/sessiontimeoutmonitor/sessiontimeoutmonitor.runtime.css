@@ -1,0 +1,92 @@
+.widget-sessiontimeoutmonitor {
+  visibility: hidden;
+}
+
+.widget-sessiontimeoutmonitor-popup {
+  position: fixed;
+  top: 25%;
+  bottom: 25%;
+  left: 25%;
+  width: 50%;
+  z-index: 999999;
+  background: white;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.widget-sessiontimeoutmonitor-image {
+  filter: hue-rotate(-20deg);
+}
+
+.widget-sessiontimeoutmonitor-title {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px
+}
+
+.widget-sessiontimeoutmonitor-message {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px
+}
+
+.widget-sessiontimeoutmonitor-button {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 40px;
+  border-radius: 5px;
+  background: #0094c8;
+  display: inline-block;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.widget-sessiontimeoutmonitor-button:hover {
+  background: rgb(29, 95, 144);
+}
+
+.widget-sessiontimeoutmonitor-background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 999998;
+  background-color: rgba(0,0,0,0.3)
+}
+
+@media screen and (max-height: 540px) {
+  .widget-sessiontimeoutmonitor-popup {
+    left: 20%;
+    width: 60%;
+  }
+
+  .widget-sessiontimeoutmonitor-image, .widget-sessiontimeoutmonitor-text {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .widget-sessiontimeoutmonitor-button {
+    left: initial;
+    right: 5%;
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .widget-sessiontimeoutmonitor-popup {
+    left: 10%;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .widget-sessiontimeoutmonitor-popup {
+    left: 5%;
+    width: 90%;
+  }
+}

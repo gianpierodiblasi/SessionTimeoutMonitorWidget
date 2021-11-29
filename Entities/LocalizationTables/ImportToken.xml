@@ -1,0 +1,74 @@
+<Entities>
+  <LocalizationTables>
+    <LocalizationTable aspect.isCreatable="false" aspect.isEditableSystemObject="true" description="Default localization table" documentationContent="" homeMashup="" languageCommon="English" languageNative="English" name="Default" projectName="" tags="">
+      <ConfigurationTables>
+        <ConfigurationTable description="Localization tokens and usage" isMultiRow="true" name="LocalizationTokens" ordinal="0">
+          <DataShape>
+            <FieldDefinitions>
+              <FieldDefinition aspect.friendlyName="Translation context" baseType="STRING" description="Translation context" name="context" ordinal="3"/>
+              <FieldDefinition aspect.friendlyName="Token name" baseType="STRING" description="Token name" name="name" ordinal="0"/>
+              <FieldDefinition aspect.friendlyName="Token usage" baseType="STRING" description="Token usage" name="usage" ordinal="2"/>
+              <FieldDefinition aspect.friendlyName="Localized value" baseType="STRING" description="Localized value" name="value" ordinal="1"/>
+            </FieldDefinitions>
+          </DataShape>
+          <Rows>
+            <Row>
+              <context/>
+              <name><![CDATA[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.title]]></name>
+              <usage/>
+              <value>Session Timeout</value>
+            </Row>
+            <Row>
+              <context/>
+              <name><![CDATA[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.message]]></name>
+              <usage/>
+              <value>The session is about to expire, please reload the page.</value>
+            </Row>
+            <Row>
+              <context/>
+              <name><![CDATA[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.button]]></name>
+              <usage/>
+              <value>Reload</value>
+            </Row>
+          </Rows>
+        </ConfigurationTable>
+      </ConfigurationTables>
+      <ConfigurationChanges/>
+    </LocalizationTable>
+    <LocalizationTable aspect.isCreatable="false" aspect.isEditableSystemObject="true" description="it localization table" documentationContent="" homeMashup="" languageCommon="Italian" languageNative="Italiano" name="it" projectName="" tags="">
+      <ConfigurationTables>
+        <ConfigurationTable description="Localization tokens and usage" isMultiRow="true" name="LocalizationTokens" ordinal="0">
+          <DataShape>
+            <FieldDefinitions>
+              <FieldDefinition aspect.friendlyName="Translation context" baseType="STRING" description="Translation context" name="context" ordinal="3"/>
+              <FieldDefinition aspect.friendlyName="Token name" baseType="STRING" description="Token name" name="name" ordinal="0"/>
+              <FieldDefinition aspect.friendlyName="Token usage" baseType="STRING" description="Token usage" name="usage" ordinal="2"/>
+              <FieldDefinition aspect.friendlyName="Localized value" baseType="STRING" description="Localized value" name="value" ordinal="1"/>
+            </FieldDefinitions>
+          </DataShape>
+          <Rows>
+            <Row>
+              <context/>
+              <name><![CDATA[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.title]]></name>
+              <usage/>
+              <value>Timeout di Sessione</value>
+            </Row>
+            <Row>
+              <context/>
+              <name><![CDATA[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.message]]></name>
+              <usage/>
+              <value>La sessione sta per scadere, ricaricare la pagina.</value>
+            </Row>
+            <Row>
+              <context/>
+              <name><![CDATA[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.button]]></name>
+              <usage/>
+              <value>Ricarica</value>
+            </Row>
+          </Rows>
+        </ConfigurationTable>
+      </ConfigurationTables>
+      <ConfigurationChanges/>
+    </LocalizationTable>    
+  </LocalizationTables>
+</Entities>
