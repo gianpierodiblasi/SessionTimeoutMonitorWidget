@@ -41,7 +41,6 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
         if (value) {
           var timeout = thisWidget.getProperty('timeout');
           var debugMode = thisWidget.getProperty('debugMode');
-          var redirect = thisWidget.getProperty('redirect');
 
           var now = new Date();
           var sessionTimeoutMonitorLastAjax = new Date(value);
@@ -52,24 +51,7 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
 
           var diff = now - sessionTimeoutMonitorLastAjax - timeout * 60 * 1000;
           if (toRedirect || diff >= -2 * 60 * 1000) {
-            var iemode = TW.Environment.queryIEMode();
-
-            var invoked = function () {
-              if (iemode) {
-                document.execCommand("ClearAuthenticationCache");
-              }
-              window.location = redirect;
-            };
-
-            var logoutInvoker = new ThingworxInvoker({
-              entityType: "Server",
-              entityName: "*",
-              apiMethod: "POST",
-              characteristic: "Services",
-              target: "Logout"
-            });
-
-            logoutInvoker.invokeService(invoked, invoked);
+            thisWidget.redirect();
           } else if (diff >= -3 * 60 * 1000) {
             toRedirect = true;
             thisWidget.showPopup();
@@ -78,7 +60,31 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
       }, 60 * 1000);
     } else if (serviceName === 'SimulateMessage') {
       thisWidget.showPopup();
+    } else if (serviceName === 'SimulateTimeout') {
+      thisWidget.redirect();
     }
+  };
+
+  this.redirect = function () {
+    var iemode = TW.Environment.queryIEMode();
+    var url = thisWidget.getProperty('redirect');
+
+    var invoked = function () {
+      if (iemode) {
+        document.execCommand("ClearAuthenticationCache");
+      }
+      window.location = url;
+    };
+
+    var logoutInvoker = new ThingworxInvoker({
+      entityType: "Server",
+      entityName: "*",
+      apiMethod: "POST",
+      characteristic: "Services",
+      target: "Logout"
+    });
+
+    logoutInvoker.invokeService(invoked, invoked);
   };
 
   this.showPopup = function () {

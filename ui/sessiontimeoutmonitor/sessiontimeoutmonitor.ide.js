@@ -52,6 +52,9 @@ TW.IDE.Widgets.sessiontimeoutmonitor = function () {
       },
       'SimulateMessage': {
         'warnIfNotBound': true
+      },
+      'SimulateTimeout': {
+        'warnIfNotBound': true
       }
     };
   };
