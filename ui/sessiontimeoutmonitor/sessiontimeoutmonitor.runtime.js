@@ -51,7 +51,22 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
 
           diff = now - sessionTimeoutMonitorLastAjax - timeout * 60 * 1000;
           if (diff >= -1 * 60 * 1000) {
-            location.replace(redirect);
+            var invoked = function () {
+              if (TW.Environment.queryIEMode()) {
+                document.execCommand("ClearAuthenticationCache");
+              }
+              window.location = redirect;
+            };
+
+            var logoutInvoker = new ThingworxInvoker({
+              entityType: "Server",
+              entityName: "*",
+              apiMethod: "POST",
+              characteristic: "Services",
+              target: "Logout"
+            });
+
+            logoutInvoker.invokeService(invoked, invoked);
           } else if (diff >= -2 * 60 * 1000) {
             thisWidget.showPopup();
           }
