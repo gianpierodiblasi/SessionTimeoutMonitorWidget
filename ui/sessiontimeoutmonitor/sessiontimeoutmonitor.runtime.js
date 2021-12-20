@@ -2,6 +2,7 @@
 TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
   var thisWidget = this;
   var timeoutID;
+  var toRedirect = false;
 
   this.runtimeProperties = function () {
     return {
@@ -49,10 +50,12 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
             console.log("Session Timeout Monitor -> timeout = " + timeout + ", sessionTimeoutMonitorLastAjax = " + sessionTimeoutMonitorLastAjax.toLocaleString() + ", now = " + now.toLocaleString());
           }
 
-          diff = now - sessionTimeoutMonitorLastAjax - timeout * 60 * 1000;
-          if (diff >= -1 * 60 * 1000) {
+          var diff = now - sessionTimeoutMonitorLastAjax - timeout * 60 * 1000;
+          if (toRedirect || diff >= -2 * 60 * 1000) {
+            var iemode = TW.Environment.queryIEMode();
+
             var invoked = function () {
-              if (TW.Environment.queryIEMode()) {
+              if (iemode) {
                 document.execCommand("ClearAuthenticationCache");
               }
               window.location = redirect;
@@ -67,7 +70,8 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
             });
 
             logoutInvoker.invokeService(invoked, invoked);
-          } else if (diff >= -2 * 60 * 1000) {
+          } else if (diff >= -3 * 60 * 1000) {
+            toRedirect = true;
             thisWidget.showPopup();
           }
         }
