@@ -27,6 +27,13 @@ TW.IDE.Widgets.sessiontimeoutmonitor = function () {
           'description': 'The session timeout (in minutes)',
           "defaultValue": 30
         },
+        'redirectMode': {
+          'isVisible': true,
+          'baseType': 'BOOLEAN',
+          'isEditable': true,
+          'defaultValue': true,
+          'description': 'true to redirect on session timeout'
+        },
         'redirect': {
           'isVisible': true,
           'baseType': 'STRING',
@@ -56,6 +63,14 @@ TW.IDE.Widgets.sessiontimeoutmonitor = function () {
       'SimulateTimeout': {
         'warnIfNotBound': true
       }
+    };
+  };
+
+  this.widgetEvents = function () {
+    return {
+      'Started': {},
+      'SessionTimeoutReaching': {},
+      'SessionTimeoutReached': {}
     };
   };
 

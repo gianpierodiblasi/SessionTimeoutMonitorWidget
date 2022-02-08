@@ -58,6 +58,8 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
           }
         }
       }, 60 * 1000);
+
+      thisWidget.jqElement.triggerHandler("Started");
     } else if (serviceName === 'SimulateMessage') {
       thisWidget.showPopup();
     } else if (serviceName === 'SimulateTimeout') {
@@ -66,28 +68,34 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
   };
 
   this.redirect = function () {
-    var iemode = TW.Environment.queryIEMode();
-    var url = thisWidget.getProperty('redirect');
+    thisWidget.jqElement.triggerHandler("SessionTimeoutReached");
 
-    var invoked = function () {
-      if (iemode) {
-        document.execCommand("ClearAuthenticationCache");
-      }
-      window.location = url;
-    };
+    if (thisWidget.getProperty('redirectMode')) {
+      var iemode = TW.Environment.queryIEMode();
+      var url = thisWidget.getProperty('redirect');
 
-    var logoutInvoker = new ThingworxInvoker({
-      entityType: "Server",
-      entityName: "*",
-      apiMethod: "POST",
-      characteristic: "Services",
-      target: "Logout"
-    });
+      var invoked = function () {
+        if (iemode) {
+          document.execCommand("ClearAuthenticationCache");
+        }
+        window.location = url;
+      };
 
-    logoutInvoker.invokeService(invoked, invoked);
+      var logoutInvoker = new ThingworxInvoker({
+        entityType: "Server",
+        entityName: "*",
+        apiMethod: "POST",
+        characteristic: "Services",
+        target: "Logout"
+      });
+
+      logoutInvoker.invokeService(invoked, invoked);
+    }
   };
 
   this.showPopup = function () {
+    thisWidget.jqElement.triggerHandler("SessionTimeoutReaching");
+
     var title = TW.Runtime.convertLocalizableString("[[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.title]]", "Session Timeout");
     var message = TW.Runtime.convertLocalizableString("[[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.message]]", "The session is about to expire, please reload the page.");
     var button = TW.Runtime.convertLocalizableString("[[SessionTimeoutMonitorWidget.sessiontimeoutmonitor.button]]", "Reload");
@@ -110,7 +118,7 @@ TW.Runtime.Widgets.sessiontimeoutmonitor = function () {
 
   this.updateProperty = function (updatePropertyInfo) {
     var properties = [
-      "timeout", "debugMode", "redirect"
+      "timeout", "debugMode", "redirect", "redirectMode"
     ];
 
     if (properties.indexOf(updatePropertyInfo.TargetProperty) !== -1) {
