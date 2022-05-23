@@ -1,6 +1,8 @@
 # SessionTimeoutMonitorWidget
 An extension to manage session timeout.
 
+**This Extension is provided as-is and without warranty or support. It is not part of the PTC product suite and there is no PTC support.**
+
 ## Description
 In general, it is not possible to intercept the session timeout in ThingWorx; this widget "tries" to intercept it with the following logic:
 - given a session timeout value (for example 30 minutes), the widget checks every minute if there have been communications between the browser and the server (intercepting all AJAX calls)
